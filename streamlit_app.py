@@ -289,10 +289,11 @@ if selection == "Notebook":
     st.write("This section displays the Jupyter Notebook used for data exploration, cleaning, and model building.")
     st.info("The notebook below is a static HTML file and is not interactive.")
 
-    notebook_filename = "online-payment-fraud-detection.html"
+    notebook_filename = "online-payment-fraud-detection-ml-model.html"
     try:
         with open(notebook_filename, "r", encoding="utf-8") as f:
             html_data = f.read()
         components.html(html_data, width=None, height=800, scrolling=True)
     except FileNotFoundError:
+
         st.error(f"File not found: '{notebook_filename}'. Please ensure the notebook has been exported to HTML and is in the same directory as this script.")
