@@ -67,7 +67,7 @@ def load_model():
     """Loads the pre-trained fraud detection model."""
     try:
         # The saved file might contain a tuple: (model, y_pred, X_test, y_test)
-        loaded_artifacts = joblib.load('online-payment-fraud-detection-dtree.pkl')
+        loaded_artifacts = joblib.load('online-transaction-fraud-detection-dtree.pkl')
         
         # Check if the loaded object is a tuple, and extract the first element
         if isinstance(loaded_artifacts, tuple):
@@ -78,7 +78,7 @@ def load_model():
         return model_pipeline
         
     except FileNotFoundError:
-        st.error("Model file 'online-payment-fraud-detection-dtree.pkl' not found. Please ensure the model is in the same directory.")
+        st.error("Model file 'online-transaction-fraud-detection-dtree.pkl' not found. Please ensure the model is in the same directory.")
         return None
     except (IndexError, TypeError):
          st.error("The model file seems to be in an incorrect format. It should contain the model pipeline as the first element. Please re-save your model correctly.")
@@ -111,7 +111,7 @@ if selection == "Home":
     with top_col1:
         st.title("💳 Online Transaction Fraud Detection")
         st.markdown("""
-        Welcome to the Fraud Detection app! This app simulate an online payment fraud detection based on various attributes.
+        Welcome to the Fraud Detection app! This app simulate an online transaction fraud detection based on various attributes.
         """)
         st.warning("Navigate to the **Fraud Detection** tab from the sidebar to check a transaction!", icon="👈")
 
@@ -289,7 +289,7 @@ if selection == "Notebook":
     st.write("This section displays the Jupyter Notebook used for data exploration, cleaning, and model building.")
     st.info("The notebook below is a static HTML file and is not interactive.")
 
-    notebook_filename = "online-payment-fraud-detection-ml-model.html"
+    notebook_filename = "online-transaction-fraud-detection-ml-model.html"
     try:
         with open(notebook_filename, "r", encoding="utf-8") as f:
             html_data = f.read()
@@ -297,3 +297,4 @@ if selection == "Notebook":
     except FileNotFoundError:
 
         st.error(f"File not found: '{notebook_filename}'. Please ensure the notebook has been exported to HTML and is in the same directory as this script.")
+
